@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "genailit"
+version = "0.1.4"
+description = "Open source Python library for multi-agent web interfaces."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pydantic>=2",
+  "fastapi>=0.110",
+  "uvicorn[standard]>=0.27",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "httpx2",
+]
+langgraph = [
+  "langgraph",
+]
+
+[project.scripts]
+genailit = "genailit.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/genailit"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
